@@ -1,38 +1,56 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>Introduction to Hidden Markov Models</title>
+    <meta name="description" content="A one hour introduction to hidden Markov models with examples.">
+    <meta name="author" content="Wesam Elshamy">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
+    <!-- Printing and PDF exports -->
+    <script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
 
-		<script src="js/reveal.js"></script>
 
-		<script>
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>A Simple Introduction to Hidden Markov Models</h2>
+            <p>Wesam Elshamy @ Diagnoss</p>
+            <img src="media/ml_cover.jpg" width="600" style="background:none; border:none; box-shadow:none;"><br>
+            <img src="media/diagnoss-logo.png" width="200" style="background:none; border:none; box-shadow:none;">
+            <aside class="notes">
+                <p>I'm Wesam Elshamy, machine learning research scientist by training.</p>
+                <p>Worked at American Express, Sweetbridge, AdviNow Medical and now Diagnoss</p>
+                <p>Please ask questions or give comments any time. This is informal.</p>
+            </aside>
+        </section>
+
+
+        <section>
+            Slide 2
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
@@ -41,9 +59,13 @@
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
+					{ src: 'plugin/highlight/highlight.js', async: true },
+					{ src: 'plugin/menu/menu.js' },
+					{ src: 'plugin/math/math.js', async: true }
 				]
 			});
-		</script>
-	</body>
+
+
+</script>
+</body>
 </html>
