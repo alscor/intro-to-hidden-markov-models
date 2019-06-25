@@ -42,7 +42,7 @@
         </section>
 
         <section>
-            <h6>Motivating Example</h6>
+            <h6>Motivating Example*</h6>
             <ul>
                 <li>How to estimate average temp 1,000 years ago?</li>
                 <li>Can't measure directly ... no records too</li>
@@ -50,52 +50,134 @@
             </ul>
             <img src="media/thermo.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
-                - Can't go back in time
-                - Remote area, no records kept
+                <ul>
+                    <li>Can't go back in time</li>
+                    <li>Remote area, no records kept</li>
+                </ul>
             </aside>
+            <p><small>* A Revealing Introduction to Hidden Markov Models -- Mark Stamp 2018</small></p>
         </section>
 
         <section>
             <ul>
                 <li>Each year, a tree grows new cells over old ones</li>
-                <li>Creating one light, and one dark growth rings</li>
+                <li>Creating one light and one dark growth rings</li>
                 <li style="color:green;">Air temp affects size of growth rings</li>
             </ul>
             <img src="media/tree_growth.jpg" width="600" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
-                - New cells form around old cells
-                - Oldest cells in the center, newest at the edge inside the bark
-                - Spring: light rings (cells)
-                - Summer: dark rings (cells)
-                -
+                <ul>
+                    <li>New cells form around old cells</li>
+                    <li>Oldest cells in the center, newest at the edge inside the bark</li>
+                    <li>Spring: light rings (cells)</li>
+                    <li>Summer: dark rings (cells)</li>
+                    <li>Count dark rings-> tree age in years</li>
+                </ul>
             </aside>
         </section>
 
         <section>
             <ul>
-                <li>High temp (usually) leads to larger rings</li>
+                <li>High temps (usually) lead to larger rings</li>
                 <li>Other factors affect ring size</li>
-                <li style="color:green;">Ring size is observable</li>
+                <li style="color:green;">Ring size is observed</li>
                 <li style="color:green;">Temp is hidden</li>
             </ul>
             <img src="media/wood_years.jpg" width="600" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
-                -
+                <ul>
+                    <li>Effect of temp on ring size is not deterministic</li>
+                    <li>Fire, sunlight, nutrition, disease, ... affect tree growth</li>
+                    <li>Hidden (latent) var: state of a machine, economy, ...</li>
+                </ul>
             </aside>
         </section>
 
         <section>
-            <h6>What is hidden in Hidden Markov Models (HMM)?</h6>
+            <h6>Emission probabilities</h6>
             <ul>
-                <li>Can't measure air temp 1,000 years ago -- Hidden</li>
-                <li>Can inspect tree growth rings formed then -- Observed</li>
+                <li>Temp effect on ring size is not deterministic</li>
+                <li>Only <em>Hot</em> and <em>Cold</em> temps</li>
+                <li>Only <em>Small</em>, <em>Medium</em> and <em>Large</em> ring sizes</li>
+            </ul>
+            <p>$$ \begin{array}{ccc}
+                & & \begin{array}{ccc} S & \quad M \quad & L \end{array}\\
+                & \begin{array}{c} H\\ C\end{array} &
+                    \left[
+                        \begin{array}{ccc}
+                            0.1 & 0.4 & 0.5\\
+                            0.7 & 0.2 & 0.2
+                        \end{array}
+                    \right]
+                \end{array}
+                $$</p>
+            <aside class="notes">
+                <ul>
+                    <li>Here is the relationship between air temp and growth ring size.</li>
+                    <li>The effect of temp on ring size is given by the emission probability matrix.</li>
+                    <li>Row stochastic matrix:  Rows add up to 1</li>
+                    <li>Columns man not add up to 1</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>State Transition Matrix</h6>
+            <p>We also know probability of:</p>
+            <ul>
+                <li>Hot year &rarr; Hot year = 0.7</li>
+                <li>Cold year &rarr; Cold year = 0.6</li>
+            </ul>
+            <p>$$\begin{array}{cc}
+                & & \begin{array}{ccc} H & \quad C\end{array}\\
+                & \begin{array}{c} H\\ C\end{array} &
+                    \left[
+                        \begin{array}{cc}
+                            0.7 & 0.3\\
+                            0.4 & 0.6
+                        \end{array}
+                    \right]\\ \\
+                & \pi= & \left[\begin{array}{cc}0.6 & 0.4\end{array}\right]
+                \end{array}
+                $$</p>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6></h6>
+            <ul>
+                <li></li>
+                <li></li>
             </ul>
             <img src="media/tree_growth.jpg" width="400" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
-                Today, we can't measure air temp 1,000 years ago.  However, air temp back then affected trees growth.
-                We can see its impact on trees growth by inspecting their growth rings.
-                - Light ring is spring, dark ring is summer.
-                - Number of dark rings = tree age in years
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6></h6>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+            <img src="media/tree_growth.jpg" width="400" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
             </aside>
         </section>
     </div>
