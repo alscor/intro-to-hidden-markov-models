@@ -35,22 +35,64 @@
             <img src="media/ml_cover.jpg" width="600" style="background:none; border:none; box-shadow:none;"><br>
             <img src="media/diagnoss-logo.png" width="200" style="background:none; border:none; box-shadow:none;">
             <aside class="notes">
-                <p>I'm Wesam Elshamy, machine learning research scientist by training.</p>
+                <p>My name is Wesam Elshamy, machine learning research scientist by training.</p>
                 <p>Worked at American Express, Sweetbridge, AdviNow Medical and now Diagnoss</p>
-                <p>Please ask questions or give comments any time. This is informal.</p>
+                <p>Please ask questions or give comments any time. Keep it informal.</p>
             </aside>
         </section>
 
+        <section>
+            <h6>Motivating Example</h6>
+            <ul>
+                <li>How to estimate average temp 1,000 years ago?</li>
+                <li>Can't measure directly ... no records too</li>
+                <li style="color:green;">Solution: Use indirect evidence</li>
+            </ul>
+            <img src="media/thermo.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                - Can't go back in time
+                - Remote area, no records kept
+            </aside>
+        </section>
+
+        <section>
+            <ul>
+                <li>Each year, a tree grows new cells over old ones</li>
+                <li>Creating one light, and one dark growth rings</li>
+                <li style="color:green;">Air temp affects size of growth rings</li>
+            </ul>
+            <img src="media/tree_growth.jpg" width="600" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                - New cells form around old cells
+                - Oldest cells in the center, newest at the edge inside the bark
+                - Spring: light rings (cells)
+                - Summer: dark rings (cells)
+                -
+            </aside>
+        </section>
+
+        <section>
+            <ul>
+                <li>High temp (usually) leads to larger rings</li>
+                <li>Other factors affect ring size</li>
+                <li style="color:green;">Ring size is observable</li>
+                <li style="color:green;">Temp is hidden</li>
+            </ul>
+            <img src="media/wood_years.jpg" width="600" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                -
+            </aside>
+        </section>
 
         <section>
             <h6>What is hidden in Hidden Markov Models (HMM)?</h6>
             <ul>
-                <li>Can't measure air temp 1000 years ago -- Hidden</li>
+                <li>Can't measure air temp 1,000 years ago -- Hidden</li>
                 <li>Can inspect tree growth rings formed then -- Observed</li>
             </ul>
             <img src="media/tree_growth.jpg" width="400" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
-                Today, we can't measure air temp 1000 years ago.  However, air temp back then affected trees growth.
+                Today, we can't measure air temp 1,000 years ago.  However, air temp back then affected trees growth.
                 We can see its impact on trees growth by inspecting their growth rings.
                 - Light ring is spring, dark ring is summer.
                 - Number of dark rings = tree age in years
