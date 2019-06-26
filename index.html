@@ -269,7 +269,7 @@
                             $$
                         </div>
                         Most likely sequence of states <em>CHCH</em>
-                        <p style="color:green">Both methods are correct</p>
+                        <p style="color:green">Method depends on application</p>
                     </div>
                 </div>
             </div>
@@ -330,7 +330,6 @@
             </aside>
         </section>
 
-
         <section>
             <h6>Problem 2</h6>
             <div style="font-size: 70%">
@@ -356,6 +355,27 @@
         </section>
 
         <section>
+            <h6>Solution</h6>
+            <div style="font-size: 70%">
+                $$
+                \operatorname*{argmax}_X P(\mathcal{O}|\lambda)
+                $$
+            </div>
+            <ul style="font-size: 70%;">
+                <li>Maximize expected number of correct states (Method 2)</li>
+                <li>Not state sequence with highest probability</li>
+                <li>Use <em>backward algorithm</em>, also <em>TN<sup>2</sup></em> complexity</li>
+                <li>Starts at end of path and works back to beginning</li>
+            </ul>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
             <h6>Problem 3</h6>
             <div style="font-size: 70%">
                 $$
@@ -372,6 +392,23 @@
                                         B   & \text{Emission prop}\\
                                     \end{array}
                 \end{array}
+                $$
+            </div>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>Solution</h6>
+            <ul style="font-size: 70%;">
+                <li>Maximize expected number of correct states (Method 2)</li>
+            </ul>
+            <div style="font-size: 70%">
+                $$
                 $$
             </div>
             <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
