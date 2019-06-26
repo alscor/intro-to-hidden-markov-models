@@ -15,6 +15,10 @@
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/monokai.css">
 
+    <!-- Add TikZJax support to draw HMM charts-->
+    <link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+    <script src="http://tikzjax.com/v1/tikzjax.js"></script>
+
     <!-- Printing and PDF exports -->
     <script>
 			var link = document.createElement( 'link' );
@@ -106,7 +110,7 @@
                     \left[
                         \begin{array}{ccc}
                             0.1 & 0.4 & 0.5\\
-                            0.7 & 0.2 & 0.2
+                            0.7 & 0.2 & 0.1
                         \end{array}
                     \right]
                 \end{array}
@@ -143,40 +147,263 @@
             <aside class="notes">
                 <ul>
                     <li></li>
-                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>HMM Notation</h6>
+            <p>$$\pi= \left[\begin{array}{cc}0.6 & 0.4\end{array}\right] \quad \text{Initial state} \\
+                A = \left[
+                    \begin{array}{cc}
+                        0.7 & 0.3\\
+                        0.4 & 0.6
+                    \end{array}
+                \right] \quad \text{State transition} \\
+                B = \left[
+                        \begin{array}{ccc}
+                            0.1 & 0.4 & 0.5\\
+                            0.7 & 0.2 & 0.1
+                        \end{array}
+                    \right] \quad \text{Emission}
+                $$</p>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
                     <li></li>
                 </ul>
             </aside>
         </section>
 
         <section>
-            <h6></h6>
+            <h6>HMM Problem</h6>
             <ul>
-                <li></li>
-                <li></li>
+                <li>Given tree rings $$\mathcal{O} = (S, M, S, L)$$</li>
+                <li>What were the temps on those four years?</li>
             </ul>
-            <img src="media/tree_growth.jpg" width="400" style="background:none; border:none; box-shadow:none;"><br>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
                 <ul>
-                    <li></li>
-                    <li></li>
                     <li></li>
                 </ul>
             </aside>
         </section>
 
         <section>
-            <h6></h6>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-            <img src="media/tree_growth.jpg" width="400" style="background:none; border:none; box-shadow:none;"><br>
+            <p>Probability temps <em>HHCC</em> generating rings <em>SMSL</em></p>
+            <div style="font-size: 60%;">
+                $$ P(HHCC) = 0.6(0.1)(0.7)(0.4)(0.3)(0.7)(0.6)(0.1) = 0.000212 $$
+            </div>
+            <div style="font-size: 60%;">
+                $$\pi= \left[\begin{array}{cc}0.6 & 0.4\end{array}\right] \quad \text{Initial state} \\
+            A = \left[
+                \begin{array}{cc}
+                    0.7 & 0.3\\
+                    0.4 & 0.6
+                \end{array}
+            \right] \quad \text{State transition} \\
+            B = \left[
+                    \begin{array}{ccc}
+                        0.1 & 0.4 & 0.5\\
+                        0.7 & 0.2 & 0.1
+                    \end{array}
+                \right] \quad \text{Emission}
+            $$
+            </div>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
+                    <li>We want to calculate the probability that temps HHCC would lead to rings with sizes SMSL</li>
+                    <li>Initial state -> emission of O_0, -> state transition -> emission of O_1 ...</li>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            Probability of each state sequence generating <em>SMSL</em>
+            <div style="width: 100%; overflow: hidden;">
+                <div style="width: 400px; float: left; font-size: 50%;">
+                    $$
+                    \begin{array}{ll}
+                        \text{state}    & \text{probability}\\
+                        \hline
+                        HHHH & .042787\\
+                        HHHC & .003635\\
+                        HHCH & .073320\\
+                        HHCC & .022017\\
+                        HCHH & .005193\\
+                        HCHC & .000415\\
+                        HCCH & .031364\\
+                        HCCC & .009451\\
+                        CHHH & .114031\\
+                        CHHC & .009762\\
+                        CHCH & .195451\\
+                        CHCC & .058573\\
+                        CCHH & .048811\\
+                        CCHC & .004154\\
+                        CCCH & .293073\\
+                        CCCC & .087963\\
+                        \hline
+                    \end{array}
+                    $$
+                </div>
+                <div style="margin-left: 420px; font-size: 70%;">
+                    <div class="fragment">
+                        <p></p>
+                        <h6 style="color:green">Method 1</h6>
+                        State sequence with max probability $$ P(CCCH)= .293073$$
+                    </div>
+                    <div class="fragment">
+                       <h6 style="color:green">Method 2</h6>
+                        State with max probability at each step
+                        <div style="font-size: 70%">
+                            $$
+                            \begin{array}{lllll}
+                            \hline
+                                 & 0        & 1         & 2         & 3\\
+                            \hline
+                            P(H) & 0.188182 & 0.519576  & 0.228788  & 0.804029\\
+                            P(C) & 0.811818 & 0.480424  & 0.771212  & 0.195971\\
+                            \hline
+                            \end{array}
+                            $$
+                        </div>
+                        Most likely sequence of states <em>CHCH</em>
+                        <p style="color:green">Both methods are correct</p>
+                    </div>
+                </div>
+            </div>
             <aside class="notes">
                 <ul>
                     <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>Problem 1</h6>
+            <div style="font-size: 70%">
+                $$
+                \begin{array}{rl}
+                    \text{Given:} & \begin{array}{rl}
+                                        \pi & \text{Initial states prop}\\
+                                        A   & \text{State transition prop}\\
+                                        B   & \text{Emission prop}\\
+                                        \mathcal{O}_0, \mathcal{O}_1, \dots & \text{Observation sequence}
+                                    \end{array}\\
+                    \hline
+                    \text{Find:}  & \text{Probability of given observation sequence}
+                \end{array}
+                $$
+            </div>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
                     <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>Problem 2</h6>
+            <div style="font-size: 70%">
+                $$
+                \begin{array}{rl}
+                    \text{Given:} & \begin{array}{rl}
+                                        \pi & \text{Initial states prop}\\
+                                        A   & \text{State transition prop}\\
+                                        B   & \text{Emission prop}\\
+                                        \mathcal{O}_0, \mathcal{O}_1, \dots & \text{Observation sequence}
+                                    \end{array}\\
+                    \hline
+                    \text{Find:}  & \text{Optimal state sequence (we did that)}
+                \end{array}
+                $$
+            </div>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
                     <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>Problem 3</h6>
+            <div style="font-size: 70%">
+                $$
+                \begin{array}{rl}
+                    \text{Given:} & \begin{array}{rl}
+                                        \mathcal{O}_0, \mathcal{O}_1, \dots & \text{Observation sequence}\\
+                                        N   & \text{Number of states}\\
+                                        M   & \text{Number of observation symbols}\\
+                                    \end{array}\\
+                    \hline
+                    \text{Find:}  & \begin{array}{rl}
+                                        \pi & \text{Initial states prop}\\
+                                        A   & \text{State transition prop}\\
+                                        B   & \text{Emission prop}\\
+                                    \end{array}
+                \end{array}
+                $$
+            </div>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>When to use HMMs</h6>
+            <p>Time series problems with hidden, discrete states</p>
+            <div style="width: 100%; overflow: hidden;">
+                <div style="width: 600px; float: left; font-size: 90%;">
+                    <p style="color:green;">Voice recognition</p>
+                    <ul>
+                        <li>Given: audio recordings of words</li>
+                        <li>Find: hidden states (words: <em>yes, no</em>)</li>
+                    </ul>
+                </div>
+                <div style="margin-left: 620px; font-size: 70%;">
+                    <img src="media/voice-recognition.png" width="400" style="background:none; border:none; box-shadow:none;"><br>
+                </div>
+            </div>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <h6>Second order Markov chains</h6>
+            <ul>
+                <li>States have longer memory</li>
+                <li>Each state depends on two preceding states</li>
+                <li>Could improve performance</li>
+                <li>Complicates problem solving</li>
+            </ul>
+            <img src="media/markov-chains-first-second.png" width="500" style="background:none; border:none; box-shadow:none;"><br>
+            <aside class="notes">
+                <ul>
+                    <li>Voice recognition with second order HMM</li>
                 </ul>
             </aside>
         </section>
