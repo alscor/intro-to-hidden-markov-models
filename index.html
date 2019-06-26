@@ -404,28 +404,19 @@
 
         <section>
             <h6>Solution</h6>
-            <ul style="font-size: 70%;">
-                <li>Maximize expected number of correct states (Method 2)</li>
-            </ul>
             <div style="font-size: 70%">
                 $$
+                \operatorname*{argmax}_{\pi,A,B} P(\mathcal{O}|\lambda)
                 $$
             </div>
-            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
-            <aside class="notes">
-                <ul>
-                    <li></li>
-                </ul>
-            </aside>
-        </section>
-
-        <section>
-            <p></p>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
+            <ul style="font-size: 70%;">
+                <li>Tune <em>&pi;, A, B</em> to max probability of observations</li>
+                <li>Initialize <em>&pi;, A, B</em> with best guess (random?)</li>
+                <li>Use <em>forward-backward algorithm</em> to compute observation props</li>
+                <li>Update <em>&pi;, A, B</em> using new prop values</li>
+                <li>Repeat if <em>P(O|&lambda;)</em> increased</li>
             </ul>
+            <img src="media/hmm_chain.png" width="700" style="background:none; border:none; box-shadow:none;"><br>
             <aside class="notes">
                 <ul>
                     <li></li>
@@ -451,7 +442,7 @@
         </section>
 
         <section>
-            <h6>When to use HMMs</h6>
+            <h6>When to use HMM</h6>
             <p>Time series problems with hidden, discrete states</p>
             <div style="width: 100%; overflow: hidden;">
                 <div style="width: 600px; float: left; font-size: 90%;">
@@ -473,7 +464,7 @@
         </section>
 
         <section>
-            <h6>When to use HMMs</h6>
+            <h6>When to use HMM</h6>
             <p>Time series problems with hidden, discrete states</p>
             <div style="width: 100%; overflow: hidden;">
                 <div style="width: 600px; float: left; font-size: 90%;">
